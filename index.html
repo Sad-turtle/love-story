@@ -5,12 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Квиз: Кто ты из Ай?</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
-        .quiz-container { max-width: 600px; margin: auto; }
-        .question { font-size: 18px; margin-bottom: 10px; }
-        .options button { display: block; width: 100%; margin: 5px 0; padding: 10px; }
-        .result { display: none; }
-        img { max-width: 100%; height: auto; margin-top: 10px; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .options button:hover {
+            background: #0056b3;
+        }
+        .result {
+            display: none;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+        #restartBtn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background: #28a745;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #restartBtn:hover {
+            background: #218838;
+        }
     </style>
 </head>
 <body>
@@ -31,43 +83,34 @@
                 ]
             },
             { 
-                question: "Как ты проводишь свободное время?", 
+                question: "Как ты проводишь выходные?", 
                 answers: [
-                    { text: "Читаю книги", scores: { "Ая историк": 3 } },
-                    { text: "Тусуюсь", scores: { "Ая зажигалочка": 3, "Ая королева кринжа": 2 } },
-                    { text: "Спорт", scores: { "Спортивная Ая": 3 } },
-                    { text: "Смотрю сериалы", scores: { "Ая которую надо баловать": 2, "Ая принцесса": 1 } }
+                    { text: "Читаю книги", scores: { "Ая историк": 2, "Серьезная Ая": 1 } },
+                    { text: "Вечеринка с друзьями", scores: { "Ая зажигалочка": 2, "Ая королева кринжа": 1 } },
+                    { text: "Шоппинг и уход за собой", scores: { "Ая принцесса": 2, "Ая которую надо баловать": 1 } },
+                    { text: "Занимаюсь спортом", scores: { "Спортивная Ая": 2, "Ая старший ребенок": 1 } }
                 ]
             },
             { 
-                question: "Какой у тебя стиль одежды?", 
+                question: "Какой твой идеальный ужин?", 
                 answers: [
-                    { text: "Классический", scores: { "Серьезная Ая": 2, "Ая историк": 1 } },
-                    { text: "Спортивный", scores: { "Спортивная Ая": 3 } },
-                    { text: "Яркий и смелый", scores: { "Ая зажигалочка": 2, "Ая королева кринжа": 1 } },
-                    { text: "Романтичный", scores: { "Ая принцесса": 3 } }
-                ]
-            },
-            { 
-                question: "Какая твоя любимая еда?", 
-                answers: [
-                    { text: "Здоровая пища", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } },
+                    { text: "Стейк с вином", scores: { "Серьезная Ая": 2, "Ая историк": 1 } },
                     { text: "Фастфуд", scores: { "Ая королева кринжа": 2, "Ая зажигалочка": 1 } },
-                    { text: "Десерты", scores: { "Ая которую надо баловать": 3, "Ая принцесса": 2 } },
-                    { text: "Домашняя еда", scores: { "Ая историк": 2, "Серьезная Ая": 1 } }
+                    { text: "Фрукты и десерты", scores: { "Ая принцесса": 2, "Ая которую надо баловать": 1 } },
+                    { text: "Смузи и салаты", scores: { "Спортивная Ая": 2, "Ая старший ребенок": 1 } }
                 ]
             }
         ];
         
         const results = {
-            "Знаток истории и географии": "aya_historian.jpg",
-            "Ая королева кринжа": "aya_cringe_q.jpg",
-            "Aya - the princess": "aya_princess.jpg",
-            "Ерке Кыз - Аяжан": "aya_connoisseur.jpg",
-            "Intellectual Aya": "aya_serious.jpg",
-            "Ая старший ребенок": "aya_older_child.jpg",
-            "Aya - Social Butterfly": "aya_fire.jpg",
-            "Adventurer Aya": "aya_sport.jpg"
+            "Ая историк": "images/aya_historian.jpg",
+            "Ая королева кринжа": "images/aya_cringe.jpg",
+            "Ая принцесса": "images/aya_princess.jpg",
+            "Ая которую надо баловать": "images/aya_spoiled.jpg",
+            "Серьезная Ая": "images/aya_serious.jpg",
+            "Ая старший ребенок": "images/aya_older_child.jpg",
+            "Ая зажигалочка": "images/aya_fire.jpg",
+            "Спортивная Ая": "images/aya_sport.jpg"
         };
         
         let currentQuestion = 0;
@@ -113,12 +156,9 @@
         
         function showResult() {
             document.getElementById("quiz").style.display = "none";
-            
             const resultDiv = document.getElementById("result");
             resultDiv.style.display = "block";
-            
             let finalResult = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-            
             resultDiv.innerHTML = `<h2>${finalResult}</h2><img src="${results[finalResult]}" alt="${finalResult}">`;
             document.getElementById("restartBtn").style.display = "block";
         }
