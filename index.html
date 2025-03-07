@@ -49,6 +49,9 @@
             margin-top: 10px;
             border-radius: 10px;
         }
+        .result-section {
+            margin-top: 20px;
+        }
         #restartBtn {
             margin-top: 20px;
             padding: 10px 20px;
@@ -90,27 +93,14 @@
                     { text: "Шоппинг и уход за собой", scores: { "Ая принцесса": 2, "Ая которую надо баловать": 1 } },
                     { text: "Занимаюсь спортом", scores: { "Спортивная Ая": 2, "Ая старший ребенок": 1 } }
                 ]
-            },
-            { 
-                question: "Какой твой идеальный ужин?", 
-                answers: [
-                    { text: "Стейк с вином", scores: { "Серьезная Ая": 2, "Ая историк": 1 } },
-                    { text: "Фастфуд", scores: { "Ая королева кринжа": 2, "Ая зажигалочка": 1 } },
-                    { text: "Фрукты и десерты", scores: { "Ая принцесса": 2, "Ая которую надо баловать": 1 } },
-                    { text: "Смузи и салаты", scores: { "Спортивная Ая": 2, "Ая старший ребенок": 1 } }
-                ]
             }
         ];
         
         const results = {
-            "Ая историк": "images/aya_historian.jpg",
-            "Ая королева кринжа": "images/aya_cringe.jpg",
-            "Ая принцесса": "images/aya_princess.jpg",
-            "Ая которую надо баловать": "images/aya_spoiled.jpg",
-            "Серьезная Ая": "images/aya_serious.jpg",
-            "Ая старший ребенок": "images/aya_older_child.jpg",
-            "Ая зажигалочка": "images/aya_fire.jpg",
-            "Спортивная Ая": "images/aya_sport.jpg"
+            "Ая историк": { image: "images/aya_historian.jpg", ticket: "images/ticket_historian.jpg", description: "Ты умная и любишь историю!" },
+            "Ая королева кринжа": { image: "images/aya_cringe.jpg", ticket: "images/ticket_cringe.jpg", description: "Ты обожаешь веселье и кринж!" },
+            "Ая зажигалочка": { image: "images/aya_party.jpg", ticket: "images/ticket_party.jpg", description: "Ты душа компании и обожаешь вечеринки!" },
+            "Серьезная Ая": { image: "images/aya_serious.jpg", ticket: "images/ticket_serious.jpg", description: "Ты умна и целеустремлённа!" }
         };
         
         let currentQuestion = 0;
@@ -159,7 +149,17 @@
             const resultDiv = document.getElementById("result");
             resultDiv.style.display = "block";
             let finalResult = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-            resultDiv.innerHTML = `<h2>${finalResult}</h2><img src="${results[finalResult]}" alt="${finalResult}">`;
+            
+            if (!results[finalResult]) return;
+            
+            resultDiv.innerHTML = `
+                <h2>${finalResult}</h2>
+                <div class="result-section">
+                    <img src="${results[finalResult].ticket}" alt="Билет">
+                    <img src="${results[finalResult].image}" alt="${finalResult}">
+                </div>
+                <p>${results[finalResult].description}</p>
+            `;
             document.getElementById("restartBtn").style.display = "block";
         }
         
