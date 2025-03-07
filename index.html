@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квиз: Кто ты из Ай?</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        .quiz-container { max-width: 600px; margin: auto; }
+        .question { font-size: 18px; margin-bottom: 10px; }
+        .options button { display: block; width: 100%; margin: 5px 0; padding: 10px; }
+        .result { display: none; }
+        img { max-width: 100%; height: auto; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div id="quiz"></div>
+        <button id="nextBtn" onclick="nextQuestion()">Далее</button>
+        <div id="result" class="result"></div>
+        <button id="restartBtn" onclick="restartQuiz()" style="display:none;">Пройти заново</button>
+    </div>
+    <script>
+        const questions = [
+            { question: "Какой твой любимый цвет?", answers: ["Синий", "Красный", "Желтый", "Зеленый"] },
+            { question: "Как ты проводишь свободное время?", answers: ["Читаю книги", "Тусуюсь", "Спорт", "Смотрю сериалы"] },
+            { question: "Выбери напиток", answers: ["Чай", "Кофе", "Лимонад", "Энергетик"] },
+            { question: "Как тебя описывают друзья?", answers: ["Умная", "Смешная", "Амбициозная", "Активная"] }
+        ];
+        
+        const results = {
+            "СинийЧитаю книгиЧайУмная": { name: "Ая историк", img: "aya_historian.jpg" },
+            "КрасныйТусуюсьКофеСмешная": { name: "Ая королева кринжа", img: "aya_cringe.jpg" },
+            "ЖелтыйСпортЛимонадАмбициозная": { name: "Спортивная Ая", img: "aya_sport.jpg" }
+        };
+        
+        let currentQuestion = 0;
+        let userAnswers = "";
+        
+        function loadQuestion() {
+            const quizDiv = document.getElementById("quiz");
+            quizDiv.innerHTML = "";
+            const q = questions[currentQuestion];
+            
+            const questionElem = document.createElement("div");
+            questionElem.className = "question";
+            questionElem.textContent = q.question;
+            quizDiv.appendChild(questionElem);
+            
+            const optionsDiv = document.createElement("div");
+            optionsDiv.className = "options";
+            
+            q.answers.forEach(answer => {
+                const btn = document.createElement("button");
+                btn.textContent = answer;
+                btn.onclick = () => {
+                    userAnswers += answer;
+                    nextQuestion();
+                };
+                optionsDiv.appendChild(btn);
+            });
+            
+            quizDiv.appendChild(optionsDiv);
+        }
+        
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+        
+        function showResult() {
+            document.getElementById("quiz").style.display = "none";
+            document.getElementById("nextBtn").style.display = "none";
+            
+            const resultDiv = document.getElementById("result");
+            resultDiv.style.display = "block";
+            
+            const resultKey = Object.keys(results).find(key => userAnswers.includes(key));
+            const finalResult = resultKey ? results[resultKey] : { name: "Неизвестная Ая", img: "aya_default.jpg" };
+            
+            resultDiv.innerHTML = `<h2>${finalResult.name}</h2><img src="${finalResult.img}" alt="${finalResult.name}">`;
+            document.getElementById("restartBtn").style.display = "block";
+        }
+        
+        function restartQuiz() {
+            currentQuestion = 0;
+            userAnswers = "";
+            document.getElementById("quiz").style.display = "block";
+            document.getElementById("nextBtn").style.display = "block";
+            document.getElementById("result").style.display = "none";
+            document.getElementById("restartBtn").style.display = "none";
+            loadQuestion();
+        }
+        
+        loadQuestion();
+    </script>
+</body>
+</html>
