@@ -310,10 +310,10 @@
             resultDiv.innerHTML = `
                 <h2>${finalResult}</h2>
                 <div class="result-section">
-                    <img src="${results[finalResult].ticket}" alt="Билет">
                     <img src="${results[finalResult].image}" alt="${finalResult}">
+                    <p>${results[finalResult].description}</p>
+                    <img src="${results[finalResult].ticket}" alt="Билет">
                 </div>
-                <p>${results[finalResult].description}</p>
             `;
             document.getElementById("restartBtn").style.display = "block";
         }
