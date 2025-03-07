@@ -77,12 +77,13 @@
     <script>
         const questions = [
             { 
-                question: "Какой твой любимый цвет?", 
+                question: "What’s your first thought when you wake up?", 
                 answers: [
-                    { text: "Синий", scores: { "Ая историк": 2, "Серьезная Ая": 1 } },
-                    { text: "Красный", scores: { "Ая зажигалочка": 2, "Ая королева кринжа": 1 } },
-                    { text: "Желтый", scores: { "Ая принцесса": 2, "Ая которую надо баловать": 1 } },
-                    { text: "Зеленый", scores: { "Спортивная Ая": 2, "Ая старший ребенок": 1 } }
+                    { text: "Time to check my reading list or learn something new", scores: { "Ая историк": 3, "Серьезная Ая": 1 } },
+                    { text: "What’s the funniest thing I can post today?", scores: { "Ая зажигалочка": 1, "Ая королева кринжа": 3 } },
+                    { text: "What’s on my agenda? I have things to rule", scores: { "Ая принцесса": 3, "Ая которую надо баловать": 1 } },
+                    { text: "Do I really need to get up? Life is exhausting", scores: { "Ая которую надо баловать": 3, "Ая старший ребенок": 1 } },
+                    { text: "Let’s go! Workout time!", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } },
                 ]
             },
             { 
@@ -91,16 +92,170 @@
                     { text: "Читаю книги", scores: { "Ая историк": 2, "Серьезная Ая": 1 } },
                     { text: "Вечеринка с друзьями", scores: { "Ая зажигалочка": 2, "Ая королева кринжа": 1 } },
                     { text: "Шоппинг и уход за собой", scores: { "Ая принцесса": 2, "Ая которую надо баловать": 1 } },
-                    { text: "Занимаюсь спортом", scores: { "Спортивная Ая": 2, "Ая старший ребенок": 1 } }
+                    { text: "Let’s go! Workout time!", scores: { "Спортивная Ая": 2, "Ая старший ребенок": 1 } }
                 ]
-            }
+            },
+            { 
+                question: "Какой твой идеальный подарок?", 
+                answers: [
+                    { text: "Красиво оформленная книга или что-то значимое.", scores: { "Ая историк": 3, "Серьезная Ая": 1 } },
+                    { text: "Забавный сюрприз, который заставит меня смеяться.", scores: { "Ая королева кринжа": 3, "Ая зажигалочка": 1 } },
+                    { text: "Что-то роскошное и элегантное.", scores: { "Ая принцесса": 3, "Ая которую надо баловать": 1 } },
+                    { text: "Практичный подарок, который мне нужен.", scores: { "Ая старший ребенок": 3, "Серьезная Ая": 1 } },
+                    { text: "Спортивный инвентарь или фитнес-трекер.", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } }
+                ] 
+            },
+            { 
+                question: "How do you handle small talk?", 
+                answers: [
+                    { text: "I bring up a fun historical fact to make it interesting.", scores: { "Ая историк": 3, "Серьезная Ая": 1 } },
+                    { text: "I say something totally weird to make them uncomfortable.", scores: { "Ая королева кринжа": 3, "Ая зажигалочка": 1 } },
+                    { text: "I steer the conversation to something about me.", scores: { "Ая принцесса": 3, "Ая которую надо баловать": 1 } },
+                    { text: "I keep it polite but try to escape ASAP.", scores: { "Ая старший ребенок": 3, "Серьезная Ая": 1 } },
+                    { text: "I turn it into a challenge: ‘Bet you can’t guess my favorite sport.", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } }
+                ] 
+            },
+            { 
+                question: "How do you react to a compliment?", 
+                answers: [
+                    { text: "Thank you! That reminds me of a cool historical fact", scores: { "Ая историк": 3, "Серьезная Ая": 1 } },
+                    { text: "Stop it, you’re lying. But go on.", scores: { "Ая королева кринжа": 3, "Ая зажигалочка": 1 } },
+                    { text: "I know, right?", scores: { "Ая принцесса": 3, "Ая которую надо баловать": 1 } },
+                    { text: "Oh… um… thanks.", scores: { "Ая старший ребенок": 3, "Серьезная Ая": 1 } },
+                    { text: "Damn right. I work hard for this.", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } }
+                ] 
+            },
+            { 
+                question: "What’s your go-to outfit?", 
+                answers: [
+                    { text: "Classic and timeless—neutral colors, well put together.", scores: { "Ая историк": 3, "Серьезная Ая": 1 } },
+                    { text: "Bright colors, funky patterns, or something ironic.", scores: { "Ая королева кринжа": 3, "Ая зажигалочка": 1 } },
+                    { text: "Elegant and fashionable, always Instagram-ready.", scores: { "Ая принцесса": 3, "Ая которую надо баловать": 1 } },
+                    { text: "Simple, practical, and comfortable.", scores: { "Ая старший ребенок": 3, "Серьезная Ая": 1 } },
+                    { text: "Athletic wear, even if I’m not working out.", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } }
+                ] 
+            },
+            { 
+                question: "How do you prefer to communicate?", 
+                answers: [
+                    { text: "In-depth conversations about meaningful topics.", scores: { "Ая историк": 3, "Серьезная Ая": 1 } },
+                    { text: "Short, funny messages with lots of emojis.", scores: { "Ая королева кринжа": 3, "Ая зажигалочка": 1 } },
+                    { text: "I prefer text messages with cute responses.", scores: { "Ая принцесса": 3, "Ая которую надо баловать": 1 } },
+                    { text: "I don’t like chatting too much.", scores: { "Ая старший ребенок": 3, "Серьезная Ая": 1 } },
+                    { text: "Quick phone calls or voice messages.", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } }
+                ] 
+            },
+            { 
+                question: "What’s your dream vacation?", 
+                answers: [
+                    { text: "A museum tour in Europe.", scores: { "Ая историк": 3, "Серьезная Ая": 1 } },
+                    { text: "A trip full of chaotic, random adventures.", scores: { "Ая королева кринжа": 3, "Ая зажигалочка": 1 } },
+                    { text: "A 5-star luxury resort with spa treatments. ", scores: { "Ая принцесса": 3, "Ая которую надо баловать": 1 } },
+                    { text: "A quiet retreat with no people. ", scores: { "Ая старший ребенок": 3, "Серьезная Ая": 1 } },
+                    { text: "Climbing, hiking, or a fitness camp.", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } }
+                ] 
+            },
+            { 
+                question: "How do you want to spend your weekends?", 
+                answers: [
+                    { text: "Relaxing with a book or attending a lecture. ", scores: { "Ая историк": 3, "Серьезная Ая": 1 } },
+                    { text: "Watching memes and making fun of everything. ", scores: { "Ая королева кринжа": 3, "Ая зажигалочка": 1 } },
+                    { text: "Visiting a spa or shopping for luxury items.", scores: { "Ая принцесса": 3, "Ая которую надо баловать": 1 } },
+                    { text: "Doing chores and taking care of responsibilities. ", scores: { "Ая старший ребенок": 3, "Серьезная Ая": 1 } },
+                    { text: "Running, biking, or playing sports.", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } }
+                ] 
+            },
+            { 
+                question: "How do you feel about responsibilities?", 
+                answers: [
+                    { text: "I take them seriously and handle them well. ", scores: { "Ая историк": 3, "Серьезная Ая": 1 } },
+                    { text: "I avoid them with humor and distractions.", scores: { "Ая королева кринжа": 3, "Ая зажигалочка": 1 } },
+                    { text: "I prefer when others handle them for me.", scores: { "Ая принцесса": 3, "Ая которую надо баловать": 1 } },
+                    { text: "I do what needs to be done, no complaints. ", scores: { "Ая старший ребенок": 3, "Серьезная Ая": 1 } },
+                    { text: "I balance work with physical activity.", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } }
+                ] 
+            },
+            { 
+                question: "How do you deal with a stressful situation?", 
+                answers: [
+                    { text: "I step back and think about it logically. ", scores: { "Ая историк": 3, "Серьезная Ая": 1 } },
+                    { text: "I laugh it off and make it into a joke.", scores: { "Ая королева кринжа": 3, "Ая зажигалочка": 1 } },
+                    { text: "I delegate tasks and take control of the situation.", scores: { "Ая принцесса": 3, "Ая которую надо баловать": 1 } },
+                    { text: "I work through it, but it’s exhausting. ", scores: { "Ая старший ребенок": 3, "Серьезная Ая": 1 } },
+                    { text: "I take it out on a workout or physical activity.", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } }
+                ] 
+            },
+            { 
+                question: "What’s your attitude towards rules?", 
+                answers: [
+                    { text: "I follow them to the letter. They’re for a reason. ", scores: { "Ая историк": 3, "Серьезная Ая": 1 } },
+                    { text: "Rules? I bend them for fun. ", scores: { "Ая королева кринжа": 3, "Ая зажигалочка": 1 } },
+                    { text: "I’m the one making the rules, obviously.", scores: { "Ая принцесса": 3, "Ая которую надо баловать": 1 } },
+                    { text: "I follow them, but only when I feel like it. ", scores: { "Ая старший ребенок": 3, "Серьезная Ая": 1 } },
+                    { text: "I break the rules if it gets me ahead.", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } }
+                ] 
+            },
+            { 
+                question: "How do you feel about drama?", 
+                answers: [
+                    { text: "I analyze it but don’t engage. ", scores: { "Ая историк": 3, "Серьезная Ая": 1 } },
+                    { text: "I live for the memes that come out of it. ", scores: { "Ая королева кринжа": 3, "Ая зажигалочка": 1 } },
+                    { text: "If it doesn’t involve me, I don’t care.", scores: { "Ая принцесса": 3, "Ая которую надо баловать": 1 } },
+                    { text: "I like observing but hate when it affects me. ", scores: { "Ая старший ребенок": 3, "Серьезная Ая": 1 } },
+                    { text: "If someone disrespects me, I’ll respond.", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } }
+                ] 
+            },
+            { 
+                question: "What’s your role in a group project?", 
+                answers: [
+                    { text: "The researcher who ensures we have the right info. ", scores: { "Ая историк": 3, "Серьезная Ая": 1 } },
+                    { text: "The comic relief who keeps everyone entertained.  ", scores: { "Ая королева кринжа": 3, "Ая зажигалочка": 1 } },
+                    { text: "The leader who delegates tasks. ", scores: { "Ая принцесса": 3, "Ая которую надо баловать": 1 } },
+                    { text: "The one who ends up doing everything.  ", scores: { "Ая старший ребенок": 3, "Серьезная Ая": 1 } },
+                    { text: "The action-taker who gets things done fast.", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } }
+                ] 
+            },
+            { 
+                question: "What’s your texting style?", 
+                answers: [
+                    { text: "Long, well-thought-out messages.  ", scores: { "Ая историк": 3, "Серьезная Ая": 1 } },
+                    { text: "Too many emojis, GIFs, and weird typing. ", scores: { "Ая королева кринжа": 3, "Ая зажигалочка": 1 } },
+                    { text: "Slightly passive-aggressive but cute.", scores: { "Ая принцесса": 3, "Ая которую надо баловать": 1 } },
+                    { text: "Seen at 10:32 AM. No response.  ", scores: { "Ая старший ребенок": 3, "Серьезная Ая": 1 } },
+                    { text: "Mostly voice messages because I’m always moving.", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } }
+                ] 
+            },
+            { 
+                question: "Choose a character:", 
+                answers: [
+                    { text: "Joan of Arc ", scores: { "Ая историк": 3, "Серьезная Ая": 1 } },
+                    { text: "Janbolat ", scores: { "Ая королева кринжа": 3, "Ая зажигалочка": 1 } },
+                    { text: "Jasmine (Aladdin)", scores: { "Ая принцесса": 3, "Ая которую надо баловать": 1 } },
+                    { text: "Jon Snow  ", scores: { "Ая старший ребенок": 3, "Серьезная Ая": 1 } },
+                    { text: "James Bond", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } }
+                ] 
+            },
+            { 
+                question: "Pick a favorite one:", 
+                answers: [
+                    { text: "Watching history of nomads together ", scores: { "Ая историк": 3, "Серьезная Ая": 1 } },
+                    { text: "Being Mamber together ", scores: { "Ая королева кринжа": 3, "Ая зажигалочка": 1 } },
+                    { text: "Having face masks for a night", scores: { "Ая принцесса": 3, "Ая которую надо баловать": 1 } },
+                    { text: "Cooking and cleaning together", scores: { "Ая старший ребенок": 3, "Серьезная Ая": 1 } },
+                    { text: "Sharing Hevy report photos and getting stronger together", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } }
+                ] 
+            },
         ];
         
         const results = {
             "Ая историк": { image: "images/aya_historian.jpg", ticket: "images/ticket_historian.jpg", description: "Ты умная и любишь историю!" },
             "Ая королева кринжа": { image: "images/aya_cringe.jpg", ticket: "images/ticket_cringe.jpg", description: "Ты обожаешь веселье и кринж!" },
             "Ая зажигалочка": { image: "images/aya_party.jpg", ticket: "images/ticket_party.jpg", description: "Ты душа компании и обожаешь вечеринки!" },
-            "Серьезная Ая": { image: "images/aya_serious.jpg", ticket: "images/ticket_serious.jpg", description: "Ты умна и целеустремлённа!" }
+            "Серьезная Ая": { image: "images/aya_serious.jpg", ticket: "images/ticket_serious.jpg", description: "Ты умна и целеустремлённа!" },
+            "Ая старший ребенок": { image: "images/aya_party.jpg", ticket: "images/ticket_party.jpg", description: "Ты душа компании и обожаешь вечеринки!" },
+            "Спортивная Ая": { image: "images/aya_serious.jpg", ticket: "images/ticket_serious.jpg", description: "Ты умна и целеустремлённа!" },
+            "Ая которую надо баловать": { image: "images/aya_party.jpg", ticket: "images/shopping_date.jpg", description: "My goddess of style. My picky eater. You can be whoever you want with me" },
+            "Ая принцесса": { image: "images/aya_serious.jpg", ticket: "images/ticket_serious.jpg", description: "Ты умна и целеустремлённа!" }
         };
         
         let currentQuestion = 0;
