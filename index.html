@@ -16,26 +16,63 @@
 <body>
     <div class="quiz-container">
         <div id="quiz"></div>
-        <button id="nextBtn" onclick="nextQuestion()">Далее</button>
         <div id="result" class="result"></div>
         <button id="restartBtn" onclick="restartQuiz()" style="display:none;">Пройти заново</button>
     </div>
     <script>
         const questions = [
-            { question: "Какой твой любимый цвет?", answers: ["Синий", "Красный", "Желтый", "Зеленый"] },
-            { question: "Как ты проводишь свободное время?", answers: ["Читаю книги", "Тусуюсь", "Спорт", "Смотрю сериалы"] },
-            { question: "Выбери напиток", answers: ["Чай", "Кофе", "Лимонад", "Энергетик"] },
-            { question: "Как тебя описывают друзья?", answers: ["Умная", "Смешная", "Амбициозная", "Активная"] }
+            { 
+                question: "Какой твой любимый цвет?", 
+                answers: [
+                    { text: "Синий", scores: { "Ая историк": 2, "Серьезная Ая": 1 } },
+                    { text: "Красный", scores: { "Ая зажигалочка": 2, "Ая королева кринжа": 1 } },
+                    { text: "Желтый", scores: { "Ая принцесса": 2, "Ая которую надо баловать": 1 } },
+                    { text: "Зеленый", scores: { "Спортивная Ая": 2, "Ая старший ребенок": 1 } }
+                ]
+            },
+            { 
+                question: "Как ты проводишь свободное время?", 
+                answers: [
+                    { text: "Читаю книги", scores: { "Ая историк": 3 } },
+                    { text: "Тусуюсь", scores: { "Ая зажигалочка": 3, "Ая королева кринжа": 2 } },
+                    { text: "Спорт", scores: { "Спортивная Ая": 3 } },
+                    { text: "Смотрю сериалы", scores: { "Ая которую надо баловать": 2, "Ая принцесса": 1 } }
+                ]
+            },
+            { 
+                question: "Какой у тебя стиль одежды?", 
+                answers: [
+                    { text: "Классический", scores: { "Серьезная Ая": 2, "Ая историк": 1 } },
+                    { text: "Спортивный", scores: { "Спортивная Ая": 3 } },
+                    { text: "Яркий и смелый", scores: { "Ая зажигалочка": 2, "Ая королева кринжа": 1 } },
+                    { text: "Романтичный", scores: { "Ая принцесса": 3 } }
+                ]
+            },
+            { 
+                question: "Какая твоя любимая еда?", 
+                answers: [
+                    { text: "Здоровая пища", scores: { "Спортивная Ая": 3, "Ая старший ребенок": 1 } },
+                    { text: "Фастфуд", scores: { "Ая королева кринжа": 2, "Ая зажигалочка": 1 } },
+                    { text: "Десерты", scores: { "Ая которую надо баловать": 3, "Ая принцесса": 2 } },
+                    { text: "Домашняя еда", scores: { "Ая историк": 2, "Серьезная Ая": 1 } }
+                ]
+            }
         ];
         
         const results = {
-            "СинийЧитаю книгиЧайУмная": { name: "Ая историк", img: "aya_historian.jpg" },
-            "КрасныйТусуюсьКофеСмешная": { name: "Ая королева кринжа", img: "aya_cringe.jpg" },
-            "ЖелтыйСпортЛимонадАмбициозная": { name: "Спортивная Ая", img: "aya_sport.jpg" }
+            "Ая историк": "aya_historian.jpg",
+            "Ая королева кринжа": "aya_cringe.jpg",
+            "Ая принцесса": "aya_princess.jpg",
+            "Ая которую надо баловать": "aya_spoiled.jpg",
+            "Серьезная Ая": "aya_serious.jpg",
+            "Ая старший ребенок": "aya_older_child.jpg",
+            "Ая зажигалочка": "aya_fire.jpg",
+            "Спортивная Ая": "aya_sport.jpg"
         };
         
         let currentQuestion = 0;
-        let userAnswers = "";
+        let scores = {};
+        Object.keys(results).forEach(result => scores[result] = 0);
         
         function loadQuestion() {
             const quizDiv = document.getElementById("quiz");
@@ -52,9 +89,11 @@
             
             q.answers.forEach(answer => {
                 const btn = document.createElement("button");
-                btn.textContent = answer;
+                btn.textContent = answer.text;
                 btn.onclick = () => {
-                    userAnswers += answer;
+                    Object.entries(answer.scores).forEach(([key, value]) => {
+                        scores[key] += value;
+                    });
                     nextQuestion();
                 };
                 optionsDiv.appendChild(btn);
@@ -74,23 +113,20 @@
         
         function showResult() {
             document.getElementById("quiz").style.display = "none";
-            document.getElementById("nextBtn").style.display = "none";
             
             const resultDiv = document.getElementById("result");
             resultDiv.style.display = "block";
             
-            const resultKey = Object.keys(results).find(key => userAnswers.includes(key));
-            const finalResult = resultKey ? results[resultKey] : { name: "Неизвестная Ая", img: "aya_default.jpg" };
+            let finalResult = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
             
-            resultDiv.innerHTML = `<h2>${finalResult.name}</h2><img src="${finalResult.img}" alt="${finalResult.name}">`;
+            resultDiv.innerHTML = `<h2>${finalResult}</h2><img src="${results[finalResult]}" alt="${finalResult}">`;
             document.getElementById("restartBtn").style.display = "block";
         }
         
         function restartQuiz() {
             currentQuestion = 0;
-            userAnswers = "";
+            Object.keys(scores).forEach(key => scores[key] = 0);
             document.getElementById("quiz").style.display = "block";
-            document.getElementById("nextBtn").style.display = "block";
             document.getElementById("result").style.display = "none";
             document.getElementById("restartBtn").style.display = "none";
             loadQuestion();
